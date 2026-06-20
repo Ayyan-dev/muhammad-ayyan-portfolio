@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Ayyan - AI/ML Portfolio</title>
+  <meta name="description" content="Muhammad Ayyan - AI/ML Engineer and Backend Developer specialized in ML Pipelines, NLP, Computer Vision, LLMs, FastAPI, PostgreSQL and MLOps." />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080b10;
+      --surface:   #0e1218;
+      --border:    #1c2230;
+      --accent:    #00d4ff;
+      --accent2:   #7c3aed;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --card:      #111722;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-head);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 6%;
+      background: rgba(8,11,16,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-code);
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color .2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 6% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 .name-accent { color: var(--accent); }
+    h1 .name-dim { color: var(--muted); }
+
+    .hero-title {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 760px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #080b10;
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0,212,255,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-code);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.15rem;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-ring {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 45px rgba(0,212,255,0.28);
+    }
+
+    .image-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      border: 8px solid var(--bg);
+      display: block;
+    }
+
+    section { padding: 6rem 6%; }
+
+    .section-label {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 3.5rem;
+      font-size: 1rem;
+    }
+
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-text p span { color: var(--text); font-weight: 500; }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .about-card .card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .about-card .card-row:last-child { border-bottom: none; }
+    .card-key { color: var(--muted); }
+    .card-val { color: var(--accent); font-family: var(--font-code); font-size: 0.85rem; text-align: right; }
+
+    #skills, #experience, #certifications { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .skill-card-name { font-weight: 600; font-size: 0.95rem; }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--font-code);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(0,212,255,0.06);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,212,255,0.4);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-num {
+      font-family: var(--font-code);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .project-links { display: flex; gap: 0.75rem; }
+
+    .project-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity .2s;
+    }
+
+    .project-link:hover { opacity: 0.7; }
+
+    .timeline { position: relative; padding-left: 2rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0,212,255,0.5);
+    }
+
+    .timeline-date {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .timeline-org { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .timeline-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .achievement-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .achievement-card h3 {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    #contact {
+      text-align: center;
+      padding-bottom: 8rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-family: var(--font-code);
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,212,255,0.3);
+      padding-bottom: 0.2rem;
+      margin: 2rem 0 0.7rem;
+      transition: border-color .2s;
+    }
+
+    .contact-email:hover { border-color: var(--accent); }
+
+    .contact-phone {
+      color: var(--muted);
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 6%;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: var(--font-code);
+    }
+
+    .cursor-glow {
+      pointer-events: none;
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+      transform: translate(-50%,-50%);
+      transition: left .12s ease, top .12s ease;
+      z-index: 0;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s, transform .6s;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 950px) {
+      #hero { align-items: flex-start; }
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .hero-image { justify-content: flex-start; }
+      .image-ring {
+        width: 280px;
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 4%; }
+      .nav-links { gap: 1rem; font-size: 0.8rem; }
+      .nav-links a { font-size: 0.78rem; }
+      .nav-logo { font-size: 0.9rem; }
+      #hero { padding: 7rem 4% 4rem; }
+      section { padding: 4rem 4%; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .about-card .card-row { align-items: flex-start; flex-direction: column; gap: 0.25rem; }
+      .card-val { text-align: left; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .image-ring { width: 240px; height: 240px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { transition: none; opacity: 1; transform: none; }
+      .cursor-glow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">&lt;MuhammadAyyan /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-tag">Available for AI/ML Opportunities</div>
+      <h1>
+        <span class="name-dim">Hi, I'm </span><br>
+        <span class="name-accent">Muhammad Ayyan</span>
+      </h1>
+      <p class="hero-title">
+        AI/ML Engineer & Backend Developer | Specialized in ML Pipelines, Recommender Systems, NLP & Computer Vision
+      </p>
+      <p class="hero-sub">
+        AI and Machine Learning enthusiast with a strong foundation in Deep Learning, Natural Language Processing,
+        Computer Vision, and Data Analysis. I enjoy building intelligent solutions that solve real-world problems,
+        training machine learning models, and integrating APIs and LLM-based technologies.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="resume.pdf" class="btn btn-outline" download>Download Resume</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">15+</div>
+          <div class="stat-label">AI & ML Projects</div>
+        </div>
+        <div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div>
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Learning</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-ring">
+        <img src="images/profile.jpg" alt="Muhammad Ayyan profile photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">// about me</div>
+  <h2>Who I Am</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I'm <span>Muhammad Ayyan</span>, an <span>AI Developer</span> and Computer Science student passionate about
+        <span>Machine Learning, Deep Learning, NLP, Computer Vision, and LLM-based applications</span>.
+      </p>
+      <p>
+        I enjoy developing innovative AI solutions and continuously expanding my knowledge to create impactful technologies.
+        My goal is to build intelligent systems that deliver meaningful impact through data and artificial intelligence.
+      </p>
+      <p>
+        My interests include <span>ML pipelines, recommender systems, predictive modeling, backend APIs, MLOps,
+        NLP pipelines, and AI-powered web applications</span>.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <div class="card-row">
+        <span class="card-key">Degree</span>
+        <span class="card-val">BS Artificial Intelligence</span>
+      </div>
+      <div class="card-row">
+        <span class="card-key">University</span>
+        <span class="card-val">COMSATS Attock Campus</span>
+      </div>
+      <div class="card-row">
+        <span class="card-key">Semester</span>
+        <span class="card-val">7th Semester</span>
+      </div>
+      <div class="card-row">
+        <span class="card-key">CGPA</span>
+        <span class="card-val">3.12 / 4.00</span>
+      </div>
+      <div class="card-row">
+        <span class="card-key">Status</span>
+        <span class="card-val">Open to Opportunities</span>
+      </div>
+      <div class="card-row">
+        <span class="card-key">Location</span>
+        <span class="card-val">Wah Cantt, Pakistan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">// tech stack</div>
+  <h2>Skills & Technologies</h2>
+  <p class="section-desc">A growing toolkit of languages, frameworks, tools, and AI concepts I use to build intelligent systems.</p>
+
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">💻</div>
+        <div class="skill-card-name">Programming Languages</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-card-name">AI & Machine Learning</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">NLP</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">LLMs</span>
+        <span class="tag">Predictive Modeling</span>
+        <span class="tag">Model Training</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">🧰</div>
+        <div class="skill-card-name">Frameworks & Libraries</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">TensorFlow</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">XGBoost</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-card-name">LLM & AI Tools</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">LangChain</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">RAG</span>
+        <span class="tag">API Integration</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-card-name">Web & Backend Development</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Flask</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">Responsive Design</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">📊</div>
+        <div class="skill-card-name">Data Science & Analytics</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Data Analysis</span>
+        <span class="tag">Data Preprocessing</span>
+        <span class="tag">Feature Engineering</span>
+        <span class="tag">EDA</span>
+        <span class="tag">Data Visualization</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-card-name">MLOps & Tools</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">MLflow</span>
+        <span class="tag">DVC</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Jupyter</span>
+        <span class="tag">Google Colab</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <div class="skill-icon">✨</div>
+        <div class="skill-card-name">Soft Skills</div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Analytical Thinking</span>
+        <span class="tag">Team Collaboration</span>
+        <span class="tag">Communication</span>
+        <span class="tag">Continuous Learning</span>
+        <span class="tag">Adaptability</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">// projects</div>
+  <h2>What I've Built</h2>
+  <p class="section-desc">A selection of AI, Machine Learning, NLP, Computer Vision, and LLM-based projects built to solve real problems.</p>
+
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-num">PROJECT_01</div>
+      <h3>AI-Powered Service Quality Monitoring System</h3>
+      <p>
+        Developed an intelligent system to analyze customer service data and predict the likelihood of service issues using
+        Machine Learning and NLP techniques. The system provides service quality insights to support proactive decision-making.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Flask</span>
+          <span class="tag">TF-IDF</span>
+          <span class="tag">Scikit-learn</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_02</div>
+      <h3>Large Language Model Applications</h3>
+      <p>
+        Built intelligent applications leveraging LLMs, LangChain, prompt engineering, and API integrations for conversational AI,
+        information retrieval, and AI-powered automation workflows.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">LangChain</span>
+          <span class="tag">LLMs</span>
+          <span class="tag">Python</span>
+          <span class="tag">APIs</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_03</div>
+      <h3>Natural Language Processing Models</h3>
+      <p>
+        Trained and optimized multiple NLP models for text classification, sentiment analysis, and information extraction tasks.
+        Applied preprocessing, vectorization, model evaluation, and deep learning techniques.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">NLP</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Scikit-learn</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_04</div>
+      <h3>Arabic Dialect Detection System</h3>
+      <p>
+        Developed an AI-powered Arabic Dialect Detection System capable of classifying text into 18 Arabic dialects.
+        Implemented Naive Bayes, Logistic Regression, BiLSTM, CNN, and a lightweight LLM-based classification approach.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">NLP</span>
+          <span class="tag">BiLSTM</span>
+          <span class="tag">CNN</span>
+          <span class="tag">CustomTkinter</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_05</div>
+      <h3>Computer Vision Projects</h3>
+      <p>
+        Developed computer vision solutions using OpenCV and deep learning for image processing, object detection,
+        visual feature extraction, and real-time AI-based analysis.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">OpenCV</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Image Processing</span>
+          <span class="tag">Python</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_06</div>
+      <h3>AI Solutions Portfolio</h3>
+      <p>
+        Built multiple AI-powered applications by combining Python, Flask, machine learning models, LLM tools,
+        and API integrations to create practical intelligent systems for real-world use cases.
+      </p>
+      <div class="project-footer">
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">ML</span>
+          <span class="tag">LLMs</span>
+          <span class="tag">APIs</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ayyan-dev" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">// journey</div>
+  <h2>Experience & Education</h2>
+  <p class="section-desc">My academic background, project-based internship experience, and learning journey in AI and software development.</p>
+
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-date">2025</div>
+      <div class="timeline-title">AI/ML Intern - Project-Based Experience</div>
+      <div class="timeline-org">Nayatel Pvt. Ltd.</div>
+      <div class="timeline-desc">
+        Developed an AI-Powered Service Quality Monitoring System to analyze customer service data and predict potential service issues.
+        Built machine learning models using Random Forest, XGBoost, TF-IDF vectorization, and NLP techniques. Performed data cleaning,
+        feature engineering, exploratory data analysis, and developed a Flask-based web application for real-time prediction and visualization.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">September 2023 — Present</div>
+      <div class="timeline-title">Bachelor of Science in Artificial Intelligence</div>
+      <div class="timeline-org">COMSATS University Islamabad, Attock Campus</div>
+      <div class="timeline-desc">
+        Currently enrolled in BS Artificial Intelligence. Studying core AI, machine learning, data science,
+        computer vision, NLP, software development, and intelligent systems. CGPA: 3.12 / 4.00.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2023 — Present</div>
+      <div class="timeline-title">AI/ML Project Development</div>
+      <div class="timeline-org">Self-Directed Learning & University Projects</div>
+      <div class="timeline-desc">
+        Built 15+ AI and Machine Learning projects involving model training, data preprocessing,
+        NLP, computer vision, LLM applications, API integration, backend development, and deployment concepts.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-label">// highlights</div>
+  <h2>Achievements & Focus Areas</h2>
+  <p class="section-desc">Key strengths and professional areas that represent my current AI/ML journey.</p>
+
+  <div class="achievements-grid fade-in">
+    <div class="achievement-card">
+      <h3>15+ AI Projects</h3>
+      <p>Completed multiple AI, ML, NLP, Computer Vision, and LLM-based projects for academic and practical use cases.</p>
+    </div>
+    <div class="achievement-card">
+      <h3>AI/ML Internship</h3>
+      <p>Worked on a real-world service quality monitoring system using ML, NLP, Flask, and data analytics.</p>
+    </div>
+    <div class="achievement-card">
+      <h3>LLM Development</h3>
+      <p>Experienced in building AI-powered applications using LangChain, prompt engineering, RAG, and API integration.</p>
+    </div>
+    <div class="achievement-card">
+      <h3>Backend & MLOps</h3>
+      <p>Focused on FastAPI, PostgreSQL, Docker, MLflow, DVC, and CI/CD for scalable AI application development.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">// contact</div>
+  <h2>Let's Connect</h2>
+  <p class="section-desc" style="margin: 0 auto 1rem;">
+    Whether it's an AI/ML internship, backend project, collaboration, or intelligent system idea — my inbox is open.
+  </p>
+
+  <a href="mailto:ayyanmuhammad82@gmail.com" class="contact-email">ayyanmuhammad82@gmail.com</a>
+  <div class="contact-phone">+92 312 4533718 · Wah Cantt, Pakistan</div>
+
+  <div class="social-links">
+    <a href="https://github.com/Ayyan-dev" class="social-link" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+
+    <a href="https://www.linkedin.com/in/muhammad-ayyan-25848a377/" class="social-link" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by <span style="color:var(--accent)">Muhammad Ayyan</span> · 2026 · Open Source on GitHub</p>
+</footer>
+
+<script>
+  const glow = document.getElementById('cursorGlow');
+
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.style.color = '');
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
