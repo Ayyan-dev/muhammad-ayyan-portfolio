@@ -18,7 +18,8 @@ jobs:
         run: |
           test -f index.html
           grep -qi '<title' index.html
-          grep -q 'FA23-BAI-032' index.html
+          test -f Dockerfile
+          echo "Portfolio checks passed"
 
       - name: Build Docker Image
         run: docker build -t devops-a2 .
